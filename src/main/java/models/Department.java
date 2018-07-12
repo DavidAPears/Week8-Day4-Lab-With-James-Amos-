@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "departments")
@@ -10,12 +12,16 @@ public class Department {
     private int id;
     private String title;
     private Manager manager;
+    private List<Admin> admin;
+    private CEO ceo;
 
     public Department(){}
 
-    public Department(String title, Manager manager) {
+    public Department(String title, Manager manager, CEO ceo) {
         this.title = title;
         this.manager = manager;
+        this.admin = new ArrayList<Admin>();
+        this.ceo = ceo;
     }
 
 
@@ -50,5 +56,18 @@ public class Department {
 
     public void setManager(Manager manager) {
         this.manager = manager;
+    }
+
+
+
+    // Many to one CEO has many departments
+    @ManyToOne
+    @JoinColumn(name ="ceo_id", nullable = false)
+    public CEO getCeo() {
+        return ceo;
+    }
+
+    public void setCeo(CEO ceo) {
+        this.ceo = ceo;
     }
 }

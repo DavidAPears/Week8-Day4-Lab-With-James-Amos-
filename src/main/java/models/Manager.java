@@ -26,6 +26,7 @@ public class Manager extends Employee {
         this.admin = new ArrayList<Admin>();
     }
 
+//    BUDGET Getter & Setter:
 
     @Column(name = "budget")
     public double getBudget() {
@@ -38,6 +39,8 @@ public class Manager extends Employee {
 
 
 
+//  ONE-TO-ONE: Manager gets Department:
+
     @OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
     public Department getDepartment() {
         return department;
@@ -48,7 +51,8 @@ public class Manager extends Employee {
     }
 
 
-//    OneToMany manager getting admins
+
+//    ONE-TO-MANY: Manager gets Admins:
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     public List<Admin> getAdmin() {
@@ -58,10 +62,6 @@ public class Manager extends Employee {
     public void setAdmin(List<Admin> admin) {
         this.admin = admin;
     }
-
-
-
-
 
 
 }

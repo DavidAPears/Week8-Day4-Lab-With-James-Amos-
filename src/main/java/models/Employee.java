@@ -25,6 +25,7 @@ public abstract class Employee {
         this.salary = salary;
     }
 
+
 //    ID Getter & Setters:
 
     @Id
@@ -38,6 +39,7 @@ public abstract class Employee {
         this.id = id;
     }
 
+
 //    NAME Getter & Setters:
 
     @Column(name = "name")
@@ -48,6 +50,7 @@ public abstract class Employee {
     public void setName(String name) {
         this.name = name;
     }
+
 
 
 //   NINO Getter & Setters:
