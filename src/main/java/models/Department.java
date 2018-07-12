@@ -13,20 +13,20 @@ public class Department {
 
     public Department(){}
 
-    public Department(String title) {
-        this.id = id;
+    public Department(String title, Manager manager) {
         this.title = title;
         this.manager = manager;
-    }
-
-    public int getId() {
-        return id;
     }
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+
     public void setId(int id) {
         this.id = id;
     }
@@ -40,7 +40,10 @@ public class Department {
         this.title = title;
     }
 
-    @Column(name = "manager")
+
+
+    @OneToOne
+    @JoinColumn(name = "manager_id", nullable = false)
     public Manager getManager() {
         return manager;
     }

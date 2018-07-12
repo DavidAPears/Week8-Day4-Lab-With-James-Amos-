@@ -1,8 +1,10 @@
 package models;
 
 import com.sun.javafx.beans.IDProperty;
+import db.DBDepartment;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Adler32;
 
@@ -10,7 +12,6 @@ import java.util.zip.Adler32;
 @Table(name ="managers")
 
 public class Manager extends Employee {
-    private int id;
     private double budget;
     private Department department;
     private List<Admin> admin;
@@ -18,23 +19,13 @@ public class Manager extends Employee {
 
     public Manager(){}
 
-    public Manager( String name, String nino, double salary, double budget, Department department, List<Admin> admin) {
+    public Manager( String name, String nino, double salary, double budget) {
         super(name, nino, salary);
         this.budget = budget;
         this.department = department;
-        this.admin = admin;
+        this.admin = new ArrayList<Admin>();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Column(name = "budget")
     public double getBudget() {
@@ -44,7 +35,10 @@ public class Manager extends Employee {
     public void setBudget(double budget) {
         this.budget = budget;
     }
-    @Column(name="department")
+
+
+
+    @OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
     public Department getDepartment() {
         return department;
     }
@@ -52,7 +46,11 @@ public class Manager extends Employee {
     public void setDepartment(Department department) {
         this.department = department;
     }
-   @Column(name= "admin")
+
+
+//    OneToMany manager getting admins
+
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     public List<Admin> getAdmin() {
         return admin;
     }
@@ -60,4 +58,11 @@ public class Manager extends Employee {
     public void setAdmin(List<Admin> admin) {
         this.admin = admin;
     }
+
+
+
+
+
+
 }
+

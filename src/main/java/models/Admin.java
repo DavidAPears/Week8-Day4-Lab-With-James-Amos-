@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name= "admins")
 
 public class Admin extends Employee {
-    private int id;
     private Manager manager;
 
     public Admin(){}
@@ -17,19 +16,11 @@ public class Admin extends Employee {
 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void addAdmin(Admin admin) {this.admin.add(admin);}
 
-
-    @Column(name = "manager")
+    @ManyToOne
+    @JoinColumn(name = "manager_id", nullable = false)
     public Manager getManager() {
         return manager;
     }
@@ -37,5 +28,7 @@ public class Admin extends Employee {
     public void setManager(Manager manager) {
         this.manager = manager;
     }
+
+
 }
 
