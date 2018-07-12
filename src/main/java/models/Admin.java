@@ -5,15 +5,16 @@ import javax.persistence.*;
 @Entity
 @Table(name= "admins")
 
-public class Admin {
+public class Admin extends Employee {
     private int id;
     private Manager manager;
 
     public Admin(){}
 
-    public Admin(int id, Manager manager) {
-        this.id = id;
+    public Admin(String name, String nino, double salary, Manager manager) {
+        super(name,nino,salary);
         this.manager = manager;
+
     }
 
     @Id

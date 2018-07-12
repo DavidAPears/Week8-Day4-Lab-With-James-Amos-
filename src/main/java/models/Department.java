@@ -13,7 +13,7 @@ public class Department {
 
     public Department(){}
 
-    public Department(int id, String title, Manager manager) {
+    public Department(String title) {
         this.id = id;
         this.title = title;
         this.manager = manager;

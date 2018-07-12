@@ -9,7 +9,7 @@ import java.util.zip.Adler32;
 @Entity
 @Table(name ="managers")
 
-public class Manager {
+public class Manager extends Employee {
     private int id;
     private double budget;
     private Department department;
@@ -18,8 +18,8 @@ public class Manager {
 
     public Manager(){}
 
-    public Manager(int id, double budget, Department department, List<Admin> admin) {
-        this.id = id;
+    public Manager( String name, String nino, double salary, double budget, Department department, List<Admin> admin) {
+        super(name, nino, salary);
         this.budget = budget;
         this.department = department;
         this.admin = admin;
